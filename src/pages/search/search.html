@@ -1,0 +1,47 @@
+<ion-header>
+
+  <ion-navbar color="primary" no-border-bottom>
+    <ion-title>Buscar</ion-title>
+  </ion-navbar>
+  <ion-toolbar class="buscar-bar" no-border-top color="primary">
+    <ion-searchbar #q placeholder="Buscar..." (keyup.enter)="getItems(q.value)"></ion-searchbar>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <div *ngIf="networkStatus!=='none'">
+    <div *ngIf="items.length>0">
+      <ion-list no-margin no-padding *ngIf="items">
+        <ion-item *ngFor="let item of items" (click)="goToDetail(item)">
+          <ion-thumbnail item-start>
+            <lazy-loader *ngIf="item.thumbnail" [src]="item.thumbnail"></lazy-loader>
+            <lazy-loader *ngIf="!item.thumbnail" [src]="'assets/imgs/wp.png'"></lazy-loader>
+          </ion-thumbnail>
+          <h2 class="searchTitle">{{wp.setTitle(item.title)}}</h2>
+          <div class="searchContainer">
+            <ion-icon name="calendar" class="cal">
+              <p class="date">{{getDate(item.modified)}}</p>
+            </ion-icon>
+            <p class="count">{{item.comment_count}}
+              <ion-icon class="chat" name="chatboxes"></ion-icon>
+            </p>
+          </div>
+
+        </ion-item>
+      </ion-list>
+      <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="20%">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando mas novedades...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </div>
+  </div>
+  <div class="nodata-container" *ngIf="items.length===0">
+    <h3>No se han encontrado resultados</h3>
+  </div>
+  <div class="nodata-container" *ngIf="networkStatus==='none'">
+    <h3>No hay conexión a Internet!</h3>
+  </div>
+</ion-content>

@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+       HCD Posadas
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="openSearch()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="networkStatus!=='none'">
+
+    <ion-card *ngFor="let item of items" (click)="goToDetail(item)" tappable>
+      <ion-thumbnail item-start>
+        <lazy-loader *ngIf="item.thumbnail_images.medium_large.url" [src]="item.thumbnail_images.medium_large.url"></lazy-loader>
+        <lazy-loader *ngIf="!item.thumbnail_images.medium_large.url" [src]="'assets/imgs/wp.png'"></lazy-loader>
+      </ion-thumbnail>
+      <ion-card-content>
+        <ion-card-title>
+          {{wp.setTitle(item.title)}}
+        </ion-card-title>
+      </ion-card-content>
+    </ion-card>
+    
+  </div>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="20%">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando mas novedades...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll> 
+    <div class="nodata-container" *ngIf="networkStatus==='none'">
+    <h3>No hay conexión a Internet!</h3>
+  </div>
+</ion-content>>

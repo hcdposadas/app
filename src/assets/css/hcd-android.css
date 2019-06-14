@@ -1,0 +1,242 @@
+/* custom css hcd-android */
+
+.toolbar-background {
+    background: #199f68 !important;
+    background: -moz-linear-gradient(45deg, #199f68 0%, #53cbf1 53%, #4daadb 100%) !important;
+    background: -webkit-linear-gradient(45deg, #199f68 0%,#53cbf1 53%,#4daadb 100%) !important;
+    background: linear-gradient(45deg, #199f68 0%,#53cbf1 53%,#4daadb 100%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#199f68', endColorstr='#4daadb',GradientType=1 ) !important;
+}
+
+.icon-wp-primary {
+    color: #008a77;
+  }
+
+page-home ion-thumbnail[item-start] {
+  margin: 0 !important;
+}
+
+.card ion-thumbnail img {
+    width: 100% !important;
+    height: 150px !important;
+    -o-object-fit: cover !important;
+    object-fit: cover !important;
+}
+
+.card {
+	margin-top: 24px;
+    margin-bottom: 24px;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    font-size: 14px;
+    -webkit-box-shadow: 0 4px 16px rgba(0,0,0,.12);
+    box-shadow: 0 4px 16px rgba(0,0,0,.12);
+}
+
+.card-content {
+    padding: 13px 16px;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    border-bottom: solid 3px #008a77;
+
+}
+
+.card-title {
+    font-size: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.fab-ios-primary, .fab-md-primary {
+    color: #fff;
+    background: #199f68;
+}
+
+page-detail .detailDescription {
+    background: #fff;
+}
+
+page-detail .detailDescription {
+    text-align: initial;
+}
+
+.inner-img {
+    position: absolute;
+    right: 0;
+    margin-top: -150px;
+    width: 94px !important;
+    z-index: 1;
+}
+
+page-menu .drawer-header .field.name {
+    text-shadow: 2px 2px 5px #000000;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+page-menu .drawer-header .text:before {
+    background: transparent;
+}
+
+page-menu .drawer-header .avatar {
+    height: 90px;
+    width: 90px;
+}
+
+page-detail p {
+    margin-bottom: 20px;
+    font-family: 'Open Sans', sans-serif;
+    color: #4c4c4c;
+    font-size: 17px;
+    line-height: 27px;
+    margin: 10px 10px 10px 10px;
+}
+
+page-detail .detailTitle {
+    font-size: 21px;
+    line-height: 24px;
+    color: #333;
+    font-weight: bold;
+    margin: 0;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+page-detail .detailCategories div {
+    background: #008a77;
+}
+
+page-detail .detailCategories {
+    padding: 0;
+    font-size: 16px;
+    position: absolute;
+    bottom: 15px;
+    left: 5px;
+}
+
+.container-image {
+    position: relative;
+    text-align: center;
+}
+
+.gallery {
+    display: none;
+}
+
+page-menu .drawer-list i {
+    background: -moz-linear-gradient(45deg, #199f68 0%, #53cbf1 53%, #4daadb 100%);
+    background: -webkit-linear-gradient(45deg, #199f68 0%,#53cbf1 53%,#4daadb 100%);
+    background: linear-gradient(45deg, #199f68 0%,#53cbf1 53%,#4daadb 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#199f68', endColorstr='#4daadb',GradientType=1 );
+    color: #008a77;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* youtube page */
+
+ion-card.adv-map p {
+    font-size: 0.7em !important;
+}
+
+button[fab].fab-map {
+    top: calc(100% - 35px);
+    z-index: 50;
+}
+
+.item-bold {
+font-weight: bold;
+}
+
+ion-content.cards-bg {
+    background-color: #f4f4f7;
+}
+
+.item-text-wrap { /* negate the nowrap CSS from .ionic .item */
+    overflow: visible;
+    text-overflow: initial;
+    white-space: initial;
+}
+
+.pageDescription {
+    padding: 70px 10px;
+}
+
+.pageDescription p {
+    text-align: center;
+}
+
+.embed-responsive {
+    width: 100%;
+    height: 200px;
+}
+
+iframe {
+    width: 100%;
+    height: 200px;
+}
+
+.category-posts-subtitle {
+    color: #666;
+}
+
+.card-content {
+    position: relative !important;
+}
+
+.card-video-title {
+    width: 80%;
+}
+
+/* menu */
+
+page-menu .drawer-header {
+    height: 200px;
+    -webkit-box-shadow: 0 4px 4px rgba(0,0,0,.12);
+    box-shadow: 0 4px 4px rgba(0,0,0,.12);
+}
+
+.item-block .item-inner {
+    border: none !important;
+}
+
+.item-block:last-child {
+    border: none !important;
+}
+
+ion-label {
+    margin: 15px 8px 15px 0 !important;
+}
+
+page-menu .drawer-header .avatar {
+    margin-top: 30px;
+    position: relative;
+}
+
+.drawer-header::before {
+    content: "";
+    display: block;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    background: #199f68;
+    background: -moz-linear-gradient(45deg, #199f68 0%, #53cbf1 53%, #4daadb 100%);
+    background: -webkit-linear-gradient(45deg, #199f68 0%,#53cbf1 53%,#4daadb 100%);
+    background: linear-gradient(45deg, #199f68 0%,#53cbf1 53%,#4daadb 100%);
+}
+
+.vivo-container {
+    text-align: center;
+}
+
+.envivo {
+    margin: 30px 0;
+}
+
+.buscar-bar .toolbar-background {
+    background: #008a77 !important;
+}

@@ -1,0 +1,44 @@
+<!--
+  Generated template for the BookmarkPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Bookmarks</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div *ngIf="items.length > 0">
+    <ion-list no-margin no-padding *ngIf="items">
+      <ion-item *ngFor="let item of items" (click)="goToDetail(item)">
+        <ion-thumbnail item-start>
+          <img src="{{item.thumbnail}}">
+        </ion-thumbnail>
+        <h2 class="bookmarkTitle">{{wp.setTitle(item.title)}}</h2>
+        <div class="bookmarkContainer">
+          <ion-icon name="calendar" class="cal">
+            <p class="date">{{getDate(item.modified)}}</p>
+          </ion-icon>
+          <p class="count">{{item.comment_count}}
+            <ion-icon name="chatboxes" class="chat"></ion-icon>
+          </p>
+        </div>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div *ngIf="items.length===0" class="empty-container">
+    <div class="empty-subcontainer">
+      <i class="material-icons">visibility_off</i>
+      <div class="empty-container-text">No Post</div>
+    </div>
+  </div>
+</ion-content>

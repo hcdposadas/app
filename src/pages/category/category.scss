@@ -1,0 +1,10 @@
+page-category {
+    .categoryContainer{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .categoryContainer i{
+        color: map-get($colors, primary);
+    }
+}

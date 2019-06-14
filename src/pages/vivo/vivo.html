@@ -1,0 +1,24 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Sesión en Vivo</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <div *ngIf="networkStatus!=='none'">
+    <div class="vivo-container">
+      <button class="envivo" ion-button icon-start (click)="openVideo()">
+        <ion-icon name="logo-youtube"></ion-icon>
+        Ver Sesión en VIVO
+      </button>
+    </div>
+  </div>
+  <div class="nodata-container" *ngIf="networkStatus==='none'">
+    <h3>No hay conexión a Internet!</h3>
+  </div>
+</ion-content>

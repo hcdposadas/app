@@ -1,0 +1,21 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>En VIVO</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <!-- <div *ngIf="networkStatus!=='none'"> -->
+    <iframe id="iframe-digesto" width="100%" height="100%" src="https://www.youtube.com/embed/live_stream?channel=UC7Nfr13PyP84jWgU5FS9LGg" frameborder="0" allowfullscreen></iframe>    
+  <!-- 
+  </div>
+  <div class="nodata-container" *ngIf="networkStatus==='none'">
+    <h3>No hay conexión a Internet!</h3>
+  </div>
+  -->
+</ion-content>

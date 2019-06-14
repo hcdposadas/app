@@ -1,0 +1,31 @@
+<!-- <ion-header header-scroll-opacity [scrollArea]="mycontent" class="detailHeader"></ion-header> -->
+<ion-header class="detailHeader" id="scroll-opacity">
+  <ion-navbar color="primary" *ngIf="data" [hideBackButton]=true>
+    <button ion-button menuToggle class="hamburger">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <!-- <ion-title>{{wp.setTitle(data.title)}}</ion-title> -->
+  </ion-navbar>
+</ion-header>
+
+
+<!--<ion-content *ngIf="data" no-padding #mycontent fullscreen></ion-content> -->
+<ion-content *ngIf="data">
+  <div class="container-image">
+    <img src="{{data.thumbnail_images.medium_large.url}}"/>
+    <div class="detailCategories">
+      <div *ngFor="let item of data.categories">
+          {{item.title}}
+      </div>
+    </div>
+  </div>
+  <div class="detailTitle">{{wp.setTitle(data.title)}}</div>
+  <div class="detailDescription">
+	<span [innerHTML]="data.content | safe:'html'"></span>
+  </div>
+  <ion-fab right bottom>
+    <button ion-fab color="primary" (click)="sharePost(setTitle(data.title),data.url)">
+      <ion-icon name="share-alt"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

@@ -1,0 +1,21 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Autoridades</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content *ngIf="data">
+  <div *ngIf="networkStatus!=='none'">
+    <div class="pageDescription">
+      <span [innerHTML]="data.page.content | safe:'html'"></span>
+    </div>
+  </div>
+  <div class="nodata-container" *ngIf="networkStatus==='none'">
+    <h3>No hay conexión a Internet!</h3>
+  </div>
+</ion-content>
