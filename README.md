@@ -1,1 +1,7 @@
-### :point_right: This starter repo has moved to the [ionic-team/starters](https://github.com/ionic-team/starters/tree/master/ionic-angular/official/blank) repo! :point_left:
+### APP HCD de Posadas
+Ionic v3 + Angular 4 + WordPress API Rest
+
+npm install -g cordova@latest ionic@latest
+npm install -g npm@latest
+npm update
+ionic cordova build android
