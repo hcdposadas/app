@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, InfiniteScroll, ToastController, LoadingController, Loading } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController, Loading } from 'ionic-angular';
 import { WpProvider } from '../../providers/wp/wp';
 import { Network } from '@ionic-native/network';
 
-declare var moment: any;
+// declare var moment: any;
 /**
  * Generated class for the CategoryPostsPage page.
  *

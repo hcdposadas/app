@@ -2,17 +2,17 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { DetailPage } from './detail';
 import { SafePipe } from './safe.pipe';
-import { IonHeaderScrollOpacityModule } from 'ion-header-scroll-opacity';
+import { IonicHeaderParallaxModule } from 'ionic-header-parallax';
 
 @NgModule({
   declarations: [
     DetailPage,
-	  SafePipe
+    SafePipe,
   ],
   
   imports: [
     IonicPageModule.forChild(DetailPage),
-    IonHeaderScrollOpacityModule
+    IonicHeaderParallaxModule
   ],
   
   exports: [

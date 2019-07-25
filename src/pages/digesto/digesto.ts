@@ -18,15 +18,14 @@ export class DigestoPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private toastCtrl: ToastController, public loadingCtrl: LoadingController, private network: Network) {
   }
 
-  // ionViewDidLoad() {
-    // let type = this.network.type;
-    //this.networkStatus = type;
-    //if (type != 'none') {
-      //this.items();
-    //} else {
-      //this.presentToast('Internet connection offline');
-    //}   
-  //}
+  ionViewDidLoad() {
+    let type = this.network.type;
+    this.networkStatus = type;
+    if (type != 'none') {
+    } else {
+      this.presentToast('Internet connection offline');
+    }   
+  }
 
   presentLoadingDefault() {
     this.loading = this.loadingCtrl.create({

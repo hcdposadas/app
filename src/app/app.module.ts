@@ -11,17 +11,17 @@ import { WpProvider } from '../providers/wp/wp';
 import { Network } from '@ionic-native/network';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { OneSignal } from '@ionic-native/onesignal';
-// import { IonHeaderScrollOpacityModule } from 'ion-header-scroll-opacity';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { VarGlobalProvider } from '../providers/var-global/var-global';
 
 @NgModule({
   declarations: [
     MyApp,
-    PopoverContentComponent,
+    PopoverContentComponent
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    // IonHeaderScrollOpacityModule,
     HttpModule
   ],
   bootstrap: [IonicApp],
@@ -30,6 +30,7 @@ import { OneSignal } from '@ionic-native/onesignal';
     PopoverContentComponent,
   ],
   providers: [
+    InAppBrowser,
     StatusBar,
     SplashScreen,
     YoutubeVideoPlayer,
@@ -37,7 +38,8 @@ import { OneSignal } from '@ionic-native/onesignal';
     SocialSharing,
     OneSignal,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    WpProvider
+    WpProvider,
+    VarGlobalProvider
   ]
 })
 export class AppModule {}

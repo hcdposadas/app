@@ -12,9 +12,12 @@
         <i class="material-icons">{{p.icon}}</i>
         <div>{{p.title}}</div>
       </button>
-    </ion-list>
+      <!-- <ion-item>
+        <ion-label>Notificaciones</ion-label>
+        <ion-toggle [(ngModel)]="OSnotificaciones" (ionChange)="cambiarNotificacion()" checked="true" ></ion-toggle>
+      </ion-item> -->
+    </ion-list>    
   </ion-content>
-
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->

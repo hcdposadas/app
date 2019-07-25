@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, InfiniteScroll, ToastController, LoadingController, Loading, IonicPage } from 'ionic-angular';
 import { WpProvider } from '../../providers/wp/wp';
 import { Network } from '@ionic-native/network';
+import { VarGlobalProvider } from '../../providers/var-global/var-global';
 
 declare var moment: any;
 
@@ -20,15 +21,31 @@ export class HomePage {
   loading: Loading;
   networkStatus: any;
 
-  constructor(public navCtrl: NavController, public wp: WpProvider, private toastCtrl: ToastController, public loadingCtrl: LoadingController, private network: Network) {  }
+  constructor(public navCtrl: NavController, public wp: WpProvider,
+    private toastCtrl: ToastController,
+    public loadingCtrl: LoadingController, private network: Network,
+    public GVP: VarGlobalProvider) { }
 
   ionViewDidLoad() {
     let type = this.network.type;
     this.networkStatus = type;
-    if (type != 'none') {
-      this.getPosts(this.offset);
-    } else {
+    if (type == 'none') {
       this.presentToast('Internet connection offline');
+    }
+    else {
+      try {
+        this.presentLoadingDefault();
+        this.GVP.getNews().subscribe(res => {
+          if (res.length > 0) {
+            this.items = res;
+            console.log('this.items', this.items);
+          };
+        });
+        this.loading.dismiss();
+      }
+      catch (e) {
+        this.loading.dismiss()
+      }
     }
   }
 
@@ -51,6 +68,7 @@ export class HomePage {
     this.wp.getPosts(offset).then(data => {
       this.loading.dismiss();
       this.response = data;
+      this.GVP.news = this.response.posts;
       this.items = this.response.posts;
     }).catch(err => {
       this.loading.dismiss();
@@ -68,11 +86,16 @@ export class HomePage {
           this.data = this.response2.posts;
           if (this.data.length === 0) {
             infiniteScroll.enable(false);
-            this.presentToast("No more data");            
+            this.presentToast("No more data");
           } else {
             for (var i = 0; i < this.data.length; i++) {
               this.items.push(this.data[i]);
+
             }
+            this.GVP.news = [...this.data, ...this.GVP.news]; 
+            this.GVP.sendNews(this.GVP.news);//concatena os dados no global
+            console.log(this.GVP.news);
+
             infiniteScroll.complete();
           }
         }).catch(err => {
@@ -86,7 +109,7 @@ export class HomePage {
 
   }
 
-  
+
 
   getDate(date) {
     return moment(date).format('ll');

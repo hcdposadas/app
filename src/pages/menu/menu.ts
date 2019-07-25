@@ -3,12 +3,6 @@ import { IonicPage, NavController, NavParams, Nav, Platform, AlertController } f
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { OneSignal } from '@ionic-native/onesignal';
 import { App } from '../../app/app.global';
-/**
- * Generated class for the MenuPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -19,24 +13,25 @@ export class MenuPage {
 
   @ViewChild(Nav) nav: Nav;
   pages: Array<{ title: string, component: any, icon: string }>;
-  public counter=0;
+  public counter = 0;
   rootPage: string = 'HomePage';
+  OSnotificaciones: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private socialSharing: SocialSharing, private oneSignal: OneSignal, private platform: Platform, private alertCtrl: AlertController) {
 
     //this.platform.registerBackButtonAction(() => {
-      //if (this.nav.canGoBack()) {
-        //this.nav.pop();
-      //} else {
-        //console.log("backPressed 1");
-        //this.presentConfirm();
-      //}
+    //if (this.nav.canGoBack()) {
+    //this.nav.pop();
+    //} else {
+    //console.log("backPressed 1");
+    //this.presentConfirm();
+    //}
     //});
-    
+
     this.platform.registerBackButtonAction(() => {
       if (this.counter == 0) {
         this.nav.pop();
-        this.counter++;      
+        this.counter++;
         setTimeout(() => { this.counter = 0 }, 2000)
       } else {
         this.presentConfirm();
@@ -52,7 +47,7 @@ export class MenuPage {
       { title: 'Videos', component: 'YoutubePage', icon: 'play_circle_filled' },
       { title: 'Sesión en VIVO', component: 'VivoPage', icon: 'videocam' },
       { title: 'Agenda', component: 'AgendaPage', icon: 'date_range' },
-      { title: 'Digesto', component: 'DigestoPage', icon: 'search' }
+      { title: 'Digesto', component: 'DigestoPage', icon: 'search' },
       // { title: 'Bookmarks', component: 'BookmarkPage', icon: 'bookmark' }
       //{ title: 'Rate Us', component: 'HomePage', icon: 'thumb_up' },
       //{ title: 'Share App', component: 'HomePage', icon: 'share' }
@@ -109,17 +104,45 @@ export class MenuPage {
         this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
 
         this.oneSignal.handleNotificationReceived().subscribe((x) => {
-          // do something when notification is received
+          // aca va lo que queres hacer cuando se la notificacion es recibida
           console.log(x);
         });
 
-        this.oneSignal.handleNotificationOpened().subscribe(() => {
-          // do something when a notification is opened
+        this.oneSignal.handleNotificationOpened().subscribe((jsonData) => {
+          // aca va lo que queres hacer cuando se abre la notificacion
+          let additionalData = jsonData.notification.payload.additionalData;
+          var idNovidad: number;
+          var tipo: string;
+
+          idNovidad = additionalData.id ? additionalData.id : 0;
+          tipo = additionalData.tipo ? additionalData.tipo : '';
+
+
+          if (tipo == 'vivo') {
+            setTimeout(() => {
+              this.nav.push('VivoPage', { tipo: tipo });
+            }, 1000);
+          }
+          else
+          if (tipo == 'post' && idNovidad > 0) {
+            setTimeout(() => {
+              this.nav.push('DetailPage', { IDNovidad: idNovidad });
+            }, 1000);
+          }
+
         });
 
+
         this.oneSignal.endInit();
+        console.log();
+        
       }
     });
+  }
+
+  // cambiar el estado de una notificacion activado/desactivado
+  cambiarNotificacion() {
+    window['plugins'].OneSignal.setSubscription(!this.OSnotificaciones);
   }
 
 }

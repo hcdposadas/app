@@ -10,10 +10,10 @@
 
 .icon-wp-primary {
     color: #008a77;
-  }
+}
 
 page-home ion-thumbnail[item-start] {
-  margin: 0 !important;
+    margin: 0 !important;
 }
 
 .card ion-thumbnail img {
@@ -127,10 +127,10 @@ page-menu .drawer-list i {
     background: -moz-linear-gradient(45deg, #199f68 0%, #53cbf1 53%, #4daadb 100%);
     background: -webkit-linear-gradient(45deg, #199f68 0%,#53cbf1 53%,#4daadb 100%);
     background: linear-gradient(45deg, #199f68 0%,#53cbf1 53%,#4daadb 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#199f68', endColorstr='#4daadb',GradientType=1 );
     color: #008a77;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#199f68', endColorstr='#4daadb',GradientType=1 );
 }
 
 /* youtube page */
@@ -231,6 +231,7 @@ page-menu .drawer-header .avatar {
 
 .vivo-container {
     text-align: center;
+    margin: 20px 10px;
 }
 
 .envivo {

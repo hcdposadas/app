@@ -23,7 +23,7 @@ export class VivoPage {
     let type = this.network.type;
     this.networkStatus = type;
     if (type != 'none') {
-      this.openVideo();
+      // this.openVideo();
     } else {
       this.presentToast('Internet connection offline');
     }   

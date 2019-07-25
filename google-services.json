@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "475857061077",
+    "firebase_url": "https://hcd-posadas.firebaseio.com",
+    "project_id": "hcd-posadas",
+    "storage_bucket": "hcd-posadas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:475857061077:android:0ad8219a9a66a7cf",
+        "android_client_info": {
+          "package_name": "com.hcdposadas.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "475857061077-qno3fl5g7f8vfebv3jqsssnsrim7i5r2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4nb0CJ_YhhZJoAVbFLlyiLElH93Rx36k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "475857061077-qno3fl5g7f8vfebv3jqsssnsrim7i5r2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
