@@ -16,5 +16,5 @@ Build Android
 Build iOS
 ===
 
-`ionic cordova build ios -- --buildFlag="-UseModernBuildSystem=0"`
+`ionic cordova build ios --prod -- --buildFlag="-UseModernBuildSystem=0"`
 
