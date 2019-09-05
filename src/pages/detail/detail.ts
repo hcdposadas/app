@@ -41,10 +41,15 @@ export class DetailPage {
     fullscreen : 'yes',//Windows only    
 };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
-    public popoverCtrl: PopoverController, private toastCtrl: ToastController, 
-    public loadingCtrl: LoadingController, private socialSharing: SocialSharing, 
-    public wp: WpProvider, public GVP: VarGlobalProvider, private theInAppBrowser: InAppBrowser) {
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams, 
+              public popoverCtrl: PopoverController, 
+              private toastCtrl: ToastController, 
+              public loadingCtrl: LoadingController, 
+              private socialSharing: SocialSharing, 
+              public wp: WpProvider, 
+              public GVP: VarGlobalProvider, 
+              private theInAppBrowser: InAppBrowser) {
 
     this.idNovidad = this.navParams.get('IDNovidad');
 
@@ -210,7 +215,7 @@ export class DetailPage {
   }
 
   getDate(date) {
-    return moment(date).format('ll');
+    return moment(date).locale('es').format('L');
   }
 
   presentLoadingDefault() {

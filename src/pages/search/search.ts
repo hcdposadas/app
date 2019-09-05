@@ -4,12 +4,6 @@ import { WpProvider } from '../../providers/wp/wp';
 import { Network } from '@ionic-native/network';
 
 declare var moment: any;
-/**
- * Generated class for the SearchPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -26,7 +20,12 @@ export class SearchPage {
   loading: Loading;
   networkStatus: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public wp: WpProvider, private toastCtrl: ToastController, public loadingCtrl: LoadingController, private network: Network) {}
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams, 
+              public wp: WpProvider, 
+              private toastCtrl: ToastController, 
+              public loadingCtrl: LoadingController, 
+              private network: Network) {}
 
   ionViewDidLoad() {
   }
@@ -99,7 +98,7 @@ export class SearchPage {
   }
 
   getDate(date) {
-    return moment(date).format('ll');
+    return moment(date).locale('es').format('l');
   }
 
   goToDetail(item) {

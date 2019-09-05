@@ -1,40 +1,146 @@
-<ion-header>
+<ion-header no-border>
   <ion-navbar color="primary">
+    <!--
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
+    -->
     <ion-title>
-       HCD Posadas
+        <img class="navbar-logo" src="assets/imgs/navbar-logo.svg">
     </ion-title>
+    <!--
     <ion-buttons end>
       <button ion-button icon-only (click)="openSearch()">
         <ion-icon name="search"></ion-icon>
       </button>
     </ion-buttons>
+    -->
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="hcd-home">
+  <div class="contenedor">
   <div *ngIf="networkStatus!=='none'">
+    <ion-grid class="titulo-slider">
+      <ion-row>
+        <ion-col align-self-end>
+          <h5>Noticias</h5>
+        </ion-col>
+        <ion-col align-self-end>
+            <button ion-button clear item-end float-right (click)="verNoticias()"> Ver más
+                <ion-icon name="arrow-forward"></ion-icon>
+            </button>
+        </ion-col>
+      </ion-row>  
+    </ion-grid>
 
-    <ion-card *ngFor="let item of items" (click)="goToDetail(item)" tappable>
-      <ion-thumbnail item-start>
-        <lazy-loader *ngIf="item.thumbnail_images.medium_large.url" [src]="item.thumbnail_images.medium_large.url"></lazy-loader>
-        <lazy-loader *ngIf="!item.thumbnail_images.medium_large.url" [src]="'assets/imgs/wp.png'"></lazy-loader>
-      </ion-thumbnail>
-      <ion-card-content>
-        <ion-card-title>
-          {{wp.setTitle(item.title)}}
-        </ion-card-title>
-      </ion-card-content>
-    </ion-card>
-    
-  </div>
-  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="20%">
-    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando mas novedades...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll> 
+    <ion-slides slidesPerView="1.2" spaceBetween="0" pager="true">
+      <ion-slide *ngFor="let item of items | slice:0:5" (click)="goToDetail(item)" tappable>
+        <ion-card>
+          <ion-thumbnail item-start>
+            <lazy-loader *ngIf="item.thumbnail_images.medium_large.url" [src]="item.thumbnail_images.medium_large.url"></lazy-loader>
+            <lazy-loader *ngIf="!item.thumbnail_images.medium_large.url" [src]="'assets/imgs/wp.png'"></lazy-loader>
+          </ion-thumbnail>
+          <p class="fecha-home fecha">{{getDate(item.modified)}}</p>
+          <ion-card-content>
+            <ion-card-title class="slide-titulo">
+              {{wp.setTitle(item.title)}}
+            </ion-card-title>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+
+    <ion-grid class="grid-home">
+      <ion-row>
+        <ion-col>
+          <ion-card (click)="verAgenda($event)">
+            <span class="hcdicon-agenda"></span>
+            <ion-card-content>
+              <ion-card-title>
+                  Agenda Legislativa
+              </ion-card-title>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card (click)="verLegisladores()">
+            <span class="hcdicon-autoridades"></span>
+            <ion-card-content>
+              <ion-card-title>
+                Concejales y Autoridades
+                </ion-card-title>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-card (click)="verEnvivo()">
+            <span class="hcdicon-envivo"></span>
+            <ion-card-content>
+              <ion-card-title>
+                Sesión en VIVO
+              </ion-card-title>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col>
+          <ion-card (click)="verOrdenanzas($event)">
+            <span class="hcdicon-digesto"></span>
+            <ion-card-content>
+              <ion-card-title>
+                Digesto Jurídico Municipal
+              </ion-card-title>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item (click)="verContacto()" class="lista-home verde">
+            <ion-avatar item-start>
+              <span class="hcdicon-mate"></span>
+            </ion-avatar>
+            <h2>Compartí un mate con un Concejal</h2>
+            <button ion-button clear item-end>
+                <ion-icon name="arrow-forward"></ion-icon>
+            </button>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+          <ion-col>
+            <ion-item class="lista-home" (click)="verVideos()">
+              <ion-avatar item-start>
+                <span class="hcdicon-videos"></span>
+              </ion-avatar>
+              <h2>Videos</h2>
+              <button ion-button clear item-end>
+                  <ion-icon name="arrow-forward"></ion-icon>
+              </button>
+            </ion-item>
+          </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item class="lista-home" (click)="verInfo()">
+            <ion-avatar item-start>
+              <span class="hcdicon-mensajes"></span>
+            </ion-avatar>
+            <h2>Contactanos</h2>
+            <button ion-button clear item-end>
+                <ion-icon name="arrow-forward"></ion-icon>
+            </button>
+          </ion-item>
+        </ion-col>
+    </ion-row>
+  </ion-grid>
+      
+  </div> 
     <div class="nodata-container" *ngIf="networkStatus==='none'">
     <h3>No hay conexión a Internet!</h3>
   </div>
-</ion-content>>
+</div>  
+</ion-content>

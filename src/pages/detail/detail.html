@@ -7,21 +7,22 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content *ngIf="data">
-  <div class="container-image">
-    <div class="detailCategories">
-      <div *ngFor="let item of data.categories">
-          {{item.title}}
-      </div>
+<ion-content class="post-detalle" *ngIf="data">  
+  <div class="detailTitle">{{wp.setTitle(data.title)}}</div>
+  <p class="fecha-detalle fecha">{{getDate(data.modified)}}</p>
+  <div class="detailCategories">
+    <div *ngFor="let item of data.categories">
+      {{item.title}}
     </div>
   </div>
-  <div class="detailTitle">{{wp.setTitle(data.title)}}</div>
   <div class="detailDescription">
     <span [innerHTML]="data.content | safe:'html'"></span>
   </div>
   <div class="detailDescription" style="text-align: center;">
     <div *ngFor="let item of data.acf.archivos">
-      <button ion-button (click)="abrirPDF(item)">{{item.archivo.title}}</button>
+      <button ion-button (click)="abrirPDF(item)" icon-end full>{{item.archivo.title}}
+        <ion-icon name="download"></ion-icon>
+      </button>
     </div>
   </div>
   <ion-fab right bottom>

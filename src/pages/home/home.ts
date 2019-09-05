@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController, InfiniteScroll, ToastController, LoadingController, Loading, IonicPage } from 'ionic-angular';
 import { WpProvider } from '../../providers/wp/wp';
 import { Network } from '@ionic-native/network';
 import { VarGlobalProvider } from '../../providers/var-global/var-global';
+import { Slides } from 'ionic-angular';
 
 declare var moment: any;
 
@@ -13,6 +14,11 @@ declare var moment: any;
 })
 export class HomePage {
 
+  /*tab1Root = HomePage;
+  tab2Root = BloquesPage;
+  */
+
+  @ViewChild(Slides) slides: Slides;
   items: any = [];
   data: any = [];
   response: any = [];
@@ -21,10 +27,27 @@ export class HomePage {
   loading: Loading;
   networkStatus: any;
 
-  constructor(public navCtrl: NavController, public wp: WpProvider,
-    private toastCtrl: ToastController,
-    public loadingCtrl: LoadingController, private network: Network,
-    public GVP: VarGlobalProvider) { }
+  constructor(public navCtrl: NavController, 
+              public wp: WpProvider,
+              private toastCtrl: ToastController,
+              public loadingCtrl: LoadingController, 
+              private network: Network,
+              public GVP: VarGlobalProvider) { }
+
+  goToSlide() {
+    this.slides.slideTo(2, 500);
+  }
+  
+  ngAfterViewInit() {  setTimeout(()=>{
+    if(this.items && this.items.length > 0){
+      // this.slides.autoplay = 2000;
+      this.slides.speed = 500;
+      this.slides.pager = true;
+      this.slides.startAutoplay()
+     }
+
+     },1000)
+   }
 
   ionViewDidLoad() {
     let type = this.network.type;
@@ -110,9 +133,8 @@ export class HomePage {
   }
 
 
-
   getDate(date) {
-    return moment(date).format('ll');
+    return moment(date).locale('es').format('L');
   }
 
   goToDetail(item) {
@@ -138,6 +160,42 @@ export class HomePage {
       position: 'bottom',
     });
     toast.present();
+  }
+
+  someFunction(){
+    
+  }
+
+  verNoticias() {
+    this.navCtrl.push('NoticiasPage');
+  }
+
+  verOrdenanzas($event) {
+    this.navCtrl.push('OrdenanzasPage');
+  }
+
+  verLegisladores($event) {
+    this.navCtrl.push('BloquesPage');
+  }
+
+  verAgenda($event) {
+    this.navCtrl.push('AgendaPage');
+  }
+
+  verEnvivo($event) {
+    this.navCtrl.push('VivoPage');
+  }
+
+  verContacto($event) {
+    this.navCtrl.push('ContactoPage');
+  }
+
+  verVideos($event) {
+    this.navCtrl.push('YoutubePage');
+  }
+
+  verInfo($event) {
+    this.navCtrl.push('InfoPage');
   }
 
 }

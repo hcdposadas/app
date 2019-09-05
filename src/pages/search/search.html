@@ -1,20 +1,16 @@
 <ion-header>
-
   <ion-navbar color="primary" no-border-bottom>
     <ion-title>Buscar</ion-title>
   </ion-navbar>
   <ion-toolbar class="buscar-bar" no-border-top color="primary">
     <ion-searchbar #q placeholder="Buscar..." (keyup.enter)="getItems(q.value)"></ion-searchbar>
   </ion-toolbar>
-
 </ion-header>
 
-
 <ion-content>
-
   <div *ngIf="networkStatus!=='none'">
     <div *ngIf="items.length>0">
-      <ion-list no-margin no-padding *ngIf="items">
+      <ion-list class="lista-buscar" no-margin no-padding *ngIf="items">
         <ion-item *ngFor="let item of items" (click)="goToDetail(item)">
           <ion-thumbnail item-start>
             <lazy-loader *ngIf="item.thumbnail" [src]="item.thumbnail"></lazy-loader>
@@ -22,14 +18,8 @@
           </ion-thumbnail>
           <h2 class="searchTitle">{{wp.setTitle(item.title)}}</h2>
           <div class="searchContainer">
-            <ion-icon name="calendar" class="cal">
-              <p class="date">{{getDate(item.modified)}}</p>
-            </ion-icon>
-            <p class="count">{{item.comment_count}}
-              <ion-icon class="chat" name="chatboxes"></ion-icon>
-            </p>
+            <p class="fecha">{{getDate(item.modified)}}</p>
           </div>
-
         </ion-item>
       </ion-list>
       <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="20%">

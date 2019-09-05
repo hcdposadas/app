@@ -1,0 +1,44 @@
+<ion-header no-border>
+  <ion-navbar color="primary" *ngIf="data">
+    <button ion-button menuToggle class="hamburger">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title></ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="hcd-detalle-ordenanza " *ngIf="data" padding="true">
+  <ion-row text-center>
+    <ion-col>
+      <span class="hcdicon-digesto detalle"></span>
+      <h2>Ficha de la Ordenanza</h2>
+    </ion-col>
+  </ion-row>
+  <ion-item text-wrap>
+    <h1>Tema General</h1>
+    <h3>{{wp.setTitle(data.temaGeneral)}}</h3>   
+    <h1>Rama</h1>
+    <h3>{{data.rama.titulo}} {{data.rama?.numeroRomano}}</h3> 
+    <h1>Número anterior</h1>
+    <h3>{{data.numeroAnterior}}</h3>
+    <h1>Fecha de publicación en boletín</h1>
+    <h3 class="fecha-ordenanzas">{{getDate(data.fechaPublicacionBoletin)}}</h3>
+    <h1>Adjuntos</h1>
+    <button ion-button (click)="abrirTextoDefinitivo(data)" icon-end full>Texto
+      <ion-icon name="download"></ion-icon>
+    </button>
+    <div class="detailDescription">
+      <div *ngFor="let item of data.anexos">
+        <button ion-button (click)="abrirAnexos(item)" icon-end full>{{item.titulo}}
+          <ion-icon name="download"></ion-icon>
+        </button>
+      </div>
+    </div>    
+    <!--<ion-fab right bottom>
+      <button ion-fab color="primary" (click)="sharePost(setTitle(data.temaGeneral))">
+        <ion-icon name="share-alt"></ion-icon>
+      </button>
+    </ion-fab>
+    -->
+  </ion-item>
+</ion-content>

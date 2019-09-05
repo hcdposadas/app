@@ -1,0 +1,36 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Noticias</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div *ngIf="networkStatus!=='none'">
+    <ion-list no-margin no-padding *ngIf="items" class="lista-noticias" text-wrap>
+      <ion-item *ngFor="let item of items" (click)="goToDetail(item)">
+        <ion-thumbnail item-start>
+          <lazy-loader *ngIf="item.thumbnail_images.medium_large" [src]="item.thumbnail_images.medium_large.url"></lazy-loader>
+          <lazy-loader *ngIf="!item.thumbnail_images.medium_large" [src]="'assets/imgs/wp.png'"></lazy-loader>
+        </ion-thumbnail>
+        <h2 class="category-posts-title">{{wp.setTitle(item.title)}}</h2>
+        <div class="category-posts-container">
+          <p class="fecha">{{getDate(item.modified)}}</p>
+        </div>
+
+      </ion-item>
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="20%">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando mas novedades...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+  <div class="nodata-container" *ngIf="networkStatus==='none'">
+    <h3>No hay conexión a Internet!</h3>
+  </div>
+</ion-content>

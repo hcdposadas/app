@@ -8,10 +8,13 @@ import { MyApp } from './app.component';
 import { PopoverContentComponent } from '../components/popover-content/popover-content';
 import { HttpModule } from '@angular/http';
 import { WpProvider } from '../providers/wp/wp';
+import { DigestoProvider } from '../providers/digesto/digesto';
+import { UsuariosService } from '../providers/usuariosservice/usuariosservice';
 import { Network } from '@ionic-native/network';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { OneSignal } from '@ionic-native/onesignal';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { IonicSelectableModule } from 'ionic-selectable';
 import { VarGlobalProvider } from '../providers/var-global/var-global';
 
 @NgModule({
@@ -21,6 +24,7 @@ import { VarGlobalProvider } from '../providers/var-global/var-global';
   ],
   imports: [
     BrowserModule,
+    IonicSelectableModule,
     IonicModule.forRoot(MyApp),
     HttpModule
   ],
@@ -39,6 +43,8 @@ import { VarGlobalProvider } from '../providers/var-global/var-global';
     OneSignal,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     WpProvider,
+    DigestoProvider,
+    UsuariosService,
     VarGlobalProvider
   ]
 })

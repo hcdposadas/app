@@ -17,7 +17,12 @@ export class MenuPage {
   rootPage: string = 'HomePage';
   OSnotificaciones: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private socialSharing: SocialSharing, private oneSignal: OneSignal, private platform: Platform, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams, 
+              private socialSharing: SocialSharing, 
+              private oneSignal: OneSignal, 
+              private platform: Platform, 
+              private alertCtrl: AlertController) {
 
     //this.platform.registerBackButtonAction(() => {
     //if (this.nav.canGoBack()) {
@@ -39,7 +44,8 @@ export class MenuPage {
     }, 0);
 
     this.pages = [
-      { title: 'Noticias', component: 'HomePage', icon: 'chrome_reader_mode' },
+      { title: 'Home', component: 'HomePage', icon: 'home' },
+      { title: 'Noticias', component: 'NoticiasPage', icon: 'chrome_reader_mode' },
       // { title: 'Categories', component: 'CategoryPage', icon: 'subject' },
       // { title: 'Pages', component: 'PagesPage', icon: 'book' },
       { title: 'Autoridades', component: 'AutoridadesPage', icon: 'person' },
@@ -48,6 +54,7 @@ export class MenuPage {
       { title: 'Sesión en VIVO', component: 'VivoPage', icon: 'videocam' },
       { title: 'Agenda', component: 'AgendaPage', icon: 'date_range' },
       { title: 'Digesto', component: 'DigestoPage', icon: 'search' },
+      { title: 'Ordenanzas', component: 'OrdenanzasPage', icon: 'search' }
       // { title: 'Bookmarks', component: 'BookmarkPage', icon: 'bookmark' }
       //{ title: 'Rate Us', component: 'HomePage', icon: 'thumb_up' },
       //{ title: 'Share App', component: 'HomePage', icon: 'share' }

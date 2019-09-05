@@ -1,0 +1,46 @@
+<ion-header no-border>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <!--<ion-title>Tomá un mate</ion-title>-->
+  </ion-navbar>  
+</ion-header>
+
+<ion-content class="hcd-contacto">
+  <ion-row text-center>
+    <ion-col>
+      <span class="hcdicon-mate contacto"></span>
+      <h2>Compartí un mate con un Concejal</h2>
+    </ion-col>
+  </ion-row>
+  <form (submit)="sendEmail()">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Concejal</ion-label>
+        <ion-select [(ngModel)]="email.concejal" name="concejal">
+          <ion-option *ngFor="let item of items" value="{{item.title}}">{{item.title}}</ion-option>
+        </ion-select>
+        </ion-item>
+          <ion-item>
+            <ion-label floating>Nombre y Apellido</ion-label>
+            <ion-input type="text" [(ngModel)]="email.nombreyapellido" name="nombreyapellido"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>E-mail</ion-label>
+            <ion-input type="text" [(ngModel)]="email.mail" name="mail"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Teléfono</ion-label>
+            <ion-input type="text" [(ngModel)]="email.telefono" name="telefono"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Comentario</ion-label>
+            <ion-textarea [(ngModel)]="email.comentario" name="comentario"></ion-textarea>
+          </ion-item>
+          <div padding>
+            <button ion-button color="primary" block>Enviar</button>
+          </div>
+    </ion-list>
+  </form>
+</ion-content>

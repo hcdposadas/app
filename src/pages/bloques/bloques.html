@@ -1,0 +1,112 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Concejales y Autoridades</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <div *ngIf="networkStatus!=='none'">
+    <div class="bloques">
+      <img class="bloques-img" src="assets/imgs/bloques.svg">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <ion-item text-wrap>
+              <ion-icon name="square" class="cambiemos" item-left></ion-icon>
+              <ion-label>Bloque Juntos por el Cambio</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item text-wrap>
+              <ion-icon name="square" class="maximicemos" item-left></ion-icon>
+              <ion-label>Bloque Maximicemos</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row> 
+          <ion-col size="6">
+            <ion-item text-wrap>
+              <ion-icon name="square" class="trabajoyprogreso" item-left></ion-icon>
+              <ion-label>Bloque Trabajo y Progreso</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item text-wrap>
+              <ion-icon name="square" class="una" item-left></ion-icon>
+              <ion-label>Bloque Unidos</ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row> 
+        <ion-row> 
+          <ion-col>
+            <ion-item text-wrap>
+              <ion-icon name="square" class="frc" item-left></ion-icon>
+              <ion-label>Bloque Frente Renovador de la Concordia</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item text-wrap>
+              <ion-icon name="square" class="defensor" item-left></ion-icon>
+              <ion-label>Defensor del Pueblo</ion-label>
+            </ion-item>            
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div class="legisladores">
+      <ion-segment [(ngModel)]="legisladores" color="Dark">
+        <ion-segment-button value="concejales" (click)="selectedTab(0)">
+          Concejales
+        </ion-segment-button>
+        <ion-segment-button value="autoridades" (click)="selectedTab(1)">
+          Autoridades
+        </ion-segment-button>
+      </ion-segment>
+
+      <ion-slides #slider>
+        <ion-slide>
+            <ion-card *ngFor="let item of items">
+              <ion-thumbnail item-start>
+                <lazy-loader *ngIf="item.thumbnail" [src]="item.thumbnail"></lazy-loader>
+                <lazy-loader *ngIf="!item.thumbnail" [src]="'assets/imgs/wp.png'"></lazy-loader>
+              </ion-thumbnail>
+              <ion-card-content>
+                <h2 class="category-posts-title">{{wp.setTitle(item.title)}}</h2>
+                <h3 class="category-posts-subtitle">{{item.custom_fields.Bloque[0]}}</h3>
+                <h3 class="category-posts-subtitle">{{item.custom_fields.Cargo[0]}}</h3>
+                <button ion-button icon-only (click)="abrirFB(item)" color="primary" clear item-end>
+                  <ion-icon  class="share-icon" name="logo-facebook"></ion-icon>
+                </button>
+                <button ion-button icon-only (click)="abrirTW(item)" color="primary" clear item-end>
+                  <ion-icon  class="share-icon" name="logo-twitter"></ion-icon>
+                </button>
+            </ion-card-content>
+            </ion-card>         
+        </ion-slide>
+    
+        <ion-slide>
+          <ion-card *ngFor="let item of items2">
+            <ion-thumbnail item-start>
+              <lazy-loader *ngIf="item.thumbnail" [src]="item.thumbnail"></lazy-loader>
+              <lazy-loader *ngIf="!item.thumbnail" [src]="'assets/imgs/wp.png'"></lazy-loader>
+            </ion-thumbnail>
+            <ion-card-content>
+              <h2 class="category-posts-title">{{wp.setTitle(item.title)}}</h2>
+              <h3 class="category-posts-subtitle">{{item.custom_fields.Cargo[0]}}</h3>
+            </ion-card-content>
+          </ion-card>
+        </ion-slide>
+      </ion-slides>
+    </div>
+
+  </div>
+  <div class="nodata-container" *ngIf="networkStatus==='none'">
+    <h3>No hay conexión a Internet!</h3>
+  </div>
+</ion-content>

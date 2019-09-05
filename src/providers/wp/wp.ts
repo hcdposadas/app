@@ -14,6 +14,56 @@ export class WpProvider {
   constructor(public http: Http) {
   }
 
+  //Obtener ramas  
+  getRamas() {
+    return new Promise((resolve, reject) => {
+      this.http.get('http://digesto.hcdposadas.gob.ar/api/ramas.json')
+        .do(this.logResponse)
+        .map(this.extractResponse)
+        .subscribe(data => {
+          resolve(data);
+        },
+        error => {
+          reject(error);
+          console.error(error);
+        }
+        );
+    });
+  }  
+
+  //Obtener ordenanzas  
+  getOrdenanzas(id, pageno) {  
+    return new Promise((resolve, reject) => {
+      this.http.get('http://digesto.hcdposadas.gob.ar/api/normas?rama='+id+'&page='+pageno)
+        .do(this.logResponse)
+        .map(this.extractResponse)
+        .subscribe(data2 => {
+          resolve(data2['hydra:member'])
+        },
+        error => {
+          reject(error);
+          console.error(error);
+        }
+        );
+    });
+  }  
+
+  getSlides(pageno) {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.BASEURL +'?json=get_category_posts&slug=noticias&count=10&page='+pageno)
+        .do(this.logResponse)
+        .map(this.extractResponse)
+        .subscribe(data => {
+          resolve(data);
+        },
+        error => {
+          reject(error);
+          console.error(error);
+        }
+        );
+    });
+  }
+
   //To get response of all posts by offset
   getPosts(pageno) {
     return new Promise((resolve, reject) => {
@@ -50,7 +100,7 @@ export class WpProvider {
     });
   }
 
-    //To get response of all posts of concejales
+  //Obtener todos los concejales
   getConcejales() {
     return new Promise((resolve, reject) => {
       this.http.get(this.BASEURL + '?json=get_recent_posts&post_type=concejal&count=20&order=asc')
@@ -58,6 +108,23 @@ export class WpProvider {
         .map(this.extractResponse)
         .subscribe(data => {
           resolve(data);
+        },
+        error => {
+          reject(error);
+          console.error(error);
+        }
+        );
+    });
+  }
+
+  //Obetener todas las autoridades
+  getAutoridades() {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.BASEURL + '?json=get_recent_posts&post_type=autoridad&count=20&order=asc')
+        .do(this.logResponse)
+        .map(this.extractResponse)
+        .subscribe(data2 => {
+          resolve(data2);
         },
         error => {
           reject(error);

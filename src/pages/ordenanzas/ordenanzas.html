@@ -1,0 +1,42 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Digesto Jurídico Municipal</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-label>Ramas</ion-label>
+    <ionic-selectable item-content [(ngModel)]="item" [items]="items" itemValueField="id" itemTextField="titulo"
+      [canSearch]="true" (onChange)="getRamas($event)" searchPlaceholder="Buscar..." [searchFailText]="'No se encontraron ramas'">
+    </ionic-selectable>
+  </ion-item>
+
+  <div *ngIf="networkStatus!=='none'">
+    <ion-list no-margin no-padding class="lista-noticias lista-ordenanzas">
+      <ion-item *ngFor="let item of items2" (click)="goToDetail(item)">
+        <ion-thumbnail item-start >
+          <span class="hcdicon-digesto"></span>
+        </ion-thumbnail>
+        <h2 class="ordenanza-titulo" text-wrap>{{item.rama?.titulo}} {{item.rama?.numeroRomano}}</h2>
+        <h2 class="ordenanza-titulo" text-wrap>{{item?.numero}} - (N° Anterior: {{item.numeroAnterior}}/{{getDate(item.fechaSancion)}})</h2>
+        <p class="ordenanza-subtitulo" text-wrap>{{item.temaGeneral}}</p>
+      </ion-item> 
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="20%">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando mas ordenanzas...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+  <p *ngIf="noData" padding text-center>No hay datos que mostrar en este momento</p> 
+  <div class="nodata-container" *ngIf="networkStatus==='none'">
+    <h3>No hay conexión a Internet!</h3>
+  </div>
+
+</ion-content>
