@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, LoadingController, Loading } from 'ionic-angular';
 import { Network } from '@ionic-native/network';
-import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
+import { InAppBrowserOptions } from '@ionic-native/in-app-browser';
 
 @IonicPage()
 @Component({
@@ -37,7 +37,6 @@ export class InfoPage {
               public navParams: NavParams, 
               private toastCtrl: ToastController, 
               public loadingCtrl: LoadingController, 
-              private theInAppBrowser: InAppBrowser,
               private network: Network) {
 }
 

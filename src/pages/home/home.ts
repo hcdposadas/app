@@ -1,9 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, InfiniteScroll, ToastController, LoadingController, Loading, IonicPage } from 'ionic-angular';
+import { NavController, InfiniteScroll, ToastController, LoadingController, Loading, IonicPage, Platform } from 'ionic-angular';
 import { WpProvider } from '../../providers/wp/wp';
 import { Network } from '@ionic-native/network';
 import { VarGlobalProvider } from '../../providers/var-global/var-global';
 import { Slides } from 'ionic-angular';
+import { OneSignal } from '@ionic-native/onesignal';
+import { App } from '../../app/app.global';
 
 declare var moment: any;
 
@@ -13,10 +15,6 @@ declare var moment: any;
   templateUrl: 'home.html'
 })
 export class HomePage {
-
-  /*tab1Root = HomePage;
-  tab2Root = BloquesPage;
-  */
 
   @ViewChild(Slides) slides: Slides;
   items: any = [];
@@ -32,7 +30,55 @@ export class HomePage {
               private toastCtrl: ToastController,
               public loadingCtrl: LoadingController, 
               private network: Network,
-              public GVP: VarGlobalProvider) { }
+              public GVP: VarGlobalProvider,
+              private oneSignal: OneSignal,
+              private platform: Platform  ) { 
+  
+  this.initNotifications(); {
+    console.log();  
+  }   
+          
+  
+  }
+
+  initNotifications() {
+    this.platform.ready().then(() => {
+      if (this.platform.is('cordova')) {
+        this.oneSignal.startInit(App.OneSignalAppID, App.GCMServerApiKey);
+        this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
+
+        this.oneSignal.handleNotificationReceived().subscribe((x) => {
+          console.log(x);
+        });
+
+        this.oneSignal.handleNotificationOpened().subscribe((jsonData) => {
+          let additionalData = jsonData.notification.payload.additionalData;
+          var idNovidad: number;
+          var tipo: string;
+
+          idNovidad = additionalData.id ? additionalData.id : 0;
+          tipo = additionalData.tipo ? additionalData.tipo : '';
+
+          if (tipo == 'vivo') {
+            setTimeout(() => {
+              this.navCtrl.push('VivoPage', { tipo: tipo });
+            }, 1000);
+          }
+          else
+          if (tipo == 'post' && idNovidad > 0) {
+            setTimeout(() => {
+              this.navCtrl.push('DetailPage', { IDNovidad: idNovidad });
+            }, 1000);
+          }
+
+        });
+
+        this.oneSignal.endInit();
+        console.log();
+        
+      }
+    });
+  }
 
   goToSlide() {
     this.slides.slideTo(2, 500);
@@ -40,7 +86,6 @@ export class HomePage {
   
   ngAfterViewInit() {  setTimeout(()=>{
     if(this.items && this.items.length > 0){
-      // this.slides.autoplay = 2000;
       this.slides.speed = 500;
       this.slides.pager = true;
       this.slides.startAutoplay()
@@ -72,13 +117,10 @@ export class HomePage {
     }
   }
 
-
   openSearch() {
     this.navCtrl.push('SearchPage');
   }
 
-  //Function for replace encoded unicode special symbols
-  //with decoded special symbols
   setTitle(title) {
     var str = title;
     str = str.replace(/&#8217;/gi, "'");
@@ -132,7 +174,6 @@ export class HomePage {
 
   }
 
-
   getDate(date) {
     return moment(date).locale('es').format('L');
   }
@@ -160,10 +201,6 @@ export class HomePage {
       position: 'bottom',
     });
     toast.present();
-  }
-
-  someFunction(){
-    
   }
 
   verNoticias() {

@@ -12,7 +12,11 @@ import { VarGlobalProvider } from '../providers/var-global/var-global';
 export class MyApp {
   rootPage: string = 'HomePage';
 
-  constructor(platform: Platform, private statusBar: StatusBar, splashScreen: SplashScreen, private wp: WpProvider, public GVP: VarGlobalProvider) {
+  constructor(platform: Platform, 
+              private statusBar: StatusBar, 
+              splashScreen: SplashScreen, 
+              private wp: WpProvider, 
+              public GVP: VarGlobalProvider) {
 
     this.wp.getPosts(1).then(data => {      
       this.GVP.news = data['posts'];
