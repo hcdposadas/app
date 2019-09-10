@@ -76,6 +76,10 @@
     display: block;
 }
 
+.ios .navbar-logo {
+    width: 100%;
+}
+
 
 .fecha-home {
     background-color: #00A19A;
