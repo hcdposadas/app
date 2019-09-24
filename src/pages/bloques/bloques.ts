@@ -86,19 +86,19 @@ export class BloquesPage {
       this.items = this.response.posts;
     }).catch(err => {
       this.loading.dismiss();
-      this.presentToast("Something went wrong!");
+      this.presentToast("Algo salio mal!");
     });
   }
 
   getAutoridades() {
-    // this.presentLoadingDefault();
+    //this.presentLoadingDefault();
     this.wp.getAutoridades().then(data2 => {
-      // this.loading.dismiss();
+      //this.loading.dismiss();
       this.response2 = data2;
       this.items2 = this.response2.posts;
     }).catch(err => {
-      // this.loading.dismiss();
-      // this.presentToast("Something went wrong!");
+      //this.loading.dismiss();
+      //this.presentToast("Something went wrong!");
     });
   }
 

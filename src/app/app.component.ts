@@ -24,7 +24,7 @@ export class MyApp {
       console.log('dta',this.GVP.news);
       
     }).catch(err => {     
-      this.GVP.presentToast("Something went wrong!");
+      this.GVP.presentToast("Algo salio mal!");
     });
 
     platform.ready().then(() => {

@@ -57,7 +57,7 @@ export class AgendaPage {
       this.items = this.response.posts;
     }).catch(err => {
       this.loading.dismiss();
-      this.presentToast("Something went wrong!");
+      this.presentToast("Algo salio mal!");
     });
   }
 
@@ -80,7 +80,7 @@ export class AgendaPage {
           }
         }).catch(err => {
           infiniteScroll.enable(false);
-          this.presentToast("Something went wrong!");
+          this.presentToast("Algo salio mal!");
         });
       } else {
         this.presentToast('Internet connection offline');

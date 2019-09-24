@@ -116,7 +116,7 @@ page-home .toolbar-background {
 
 page-home {
     background: url(../imgs/header-bg.png) no-repeat top center;
-    background-size: contain;
+    background-size: cover;
     background-color: #f3f3f3;
 }
 
@@ -763,7 +763,7 @@ page-menu .drawer-header .avatar {
 
 .hcd-contacto {
     background: url(../imgs/header-bg.png) no-repeat top center;
-    background-size: contain;
+    background-size: cover;
     background-color: #f3f3f3;
 }
 

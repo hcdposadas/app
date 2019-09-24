@@ -54,7 +54,7 @@ export class ContactoPage {
       this.items = this.response.posts;
     }).catch(err => {
       this.loading.dismiss();
-      this.presentToast("Something went wrong!");
+      this.presentToast("Algo salio mal!");
     });
   }
 

@@ -38,7 +38,7 @@ export class PagesPage {
       this.items = this.response.pages;
     }).catch(err => {
       this.loading.dismiss();
-      this.presentToast("Something went wrong!");
+      this.presentToast("Algo salio mal!");
     });
   }
 

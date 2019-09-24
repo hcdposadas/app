@@ -15,7 +15,6 @@ export class YoutubePage {
   maxResults: string = '50';
   pageToken: string;
   googleToken: string = 'AIzaSyDntBVqRDllynW9o0EwKCAi6LGMva9Ric8';
-  //searchQuery: string = 'Pst. David Olusegun';
   posts: any = [];
   no_result: boolean = false;
   loader: any;
@@ -31,7 +30,7 @@ export class YoutubePage {
 
       this.fetchData();
     });
-  
+   
   } 
 
   fetchData() {
@@ -40,9 +39,6 @@ export class YoutubePage {
     this.channelID + '&type=video&order=date&maxResults=' +
     this.maxResults + '&key=' + this.googleToken;
 
-    if (this.pageToken) {
-        url +=  '&pageToken=' + this.pageToken;
-    }
 
     this.http.get(url).map(res => res.json()).subscribe(data => {
       console.log(data.items);

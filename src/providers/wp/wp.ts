@@ -64,6 +64,22 @@ export class WpProvider {
     });
   }
 
+  getSesionEnVivoAhora() {
+    return new Promise((resolve, reject) => {
+      this.http.get('https://www.googleapis.com/youtube/v3/search?key=AIzaSyDntBVqRDllynW9o0EwKCAi6LGMva9Ric8&maxResults=1&part=snippet&channelId=UC7Nfr13PyP84jWgU5FS9LGg&type=video&liveBroadcastContent=live&order=date')
+        .do(this.logResponse)
+        .map(this.extractResponse)
+        .subscribe(data => {
+          resolve(data);
+        },
+        error => {
+          reject(error);
+          console.error(error);
+        }
+        );
+    });
+  }
+
   //To get response of all posts by offset
   getPosts(pageno) {
     return new Promise((resolve, reject) => {
@@ -108,6 +124,22 @@ export class WpProvider {
         .map(this.extractResponse)
         .subscribe(data => {
           resolve(data);
+        },
+        error => {
+          reject(error);
+          console.error(error);
+        }
+        );
+    });
+  }
+
+  getSesionId() {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.BASEURL + '?json=get_recent_posts&post_type=sesionenvivo&count=20&order=asc')
+        .do(this.logResponse)
+        .map(this.extractResponse)
+        .subscribe(data2 => {
+          resolve(data2);
         },
         error => {
           reject(error);

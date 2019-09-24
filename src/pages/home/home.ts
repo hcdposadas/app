@@ -6,6 +6,7 @@ import { VarGlobalProvider } from '../../providers/var-global/var-global';
 import { Slides } from 'ionic-angular';
 import { OneSignal } from '@ionic-native/onesignal';
 import { App } from '../../app/app.global';
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 
 declare var moment: any;
 
@@ -18,9 +19,12 @@ export class HomePage {
 
   @ViewChild(Slides) slides: Slides;
   items: any = [];
+  items2: any = [];
   data: any = [];
+  data2: any = [];
   response: any = [];
   response2: any = [];
+  response3: any = [];
   offset = 1;
   loading: Loading;
   networkStatus: any;
@@ -32,7 +36,8 @@ export class HomePage {
               private network: Network,
               public GVP: VarGlobalProvider,
               private oneSignal: OneSignal,
-              private platform: Platform  ) { 
+              private platform: Platform,
+              private youtube: YoutubeVideoPlayer  ) { 
   
   this.initNotifications(); {
     console.log();  
@@ -100,21 +105,43 @@ export class HomePage {
     if (type == 'none') {
       this.presentToast('Internet connection offline');
     }
-    else {
+    else {      
       try {
         this.presentLoadingDefault();
         this.GVP.getNews().subscribe(res => {
           if (res.length > 0) {
             this.items = res;
             console.log('this.items', this.items);
+            
           };
         });
         this.loading.dismiss();
+        this.getSesionId()
       }
       catch (e) {
         this.loading.dismiss()
       }
+      
     }
+  }
+
+  verSesion(){
+    console.log('acf',this.items2[0].acf);    
+    this.youtube.openVideo(`${this.items2[0].acf.id_sesion}`);
+  }
+
+  getSesionId() {
+    //this.presentLoadingDefault();
+    this.wp.getSesionId().then(data2 => {
+      //this.loading.dismiss();
+      this.response3 = data2;
+      this.items2 = data2['posts'];
+      console.log('itens2',this.items2);
+      
+    }).catch(err => {
+      //this.loading.dismiss();
+      //this.presentToast("Algo salio mal!");
+    });
   }
 
   openSearch() {
@@ -137,7 +164,7 @@ export class HomePage {
       this.items = this.response.posts;
     }).catch(err => {
       this.loading.dismiss();
-      this.presentToast("Something went wrong!");
+      this.presentToast("Algo salio mal!");
     });
   }
 
@@ -165,7 +192,7 @@ export class HomePage {
           }
         }).catch(err => {
           infiniteScroll.enable(false);
-          this.presentToast("Something went wrong!");
+          this.presentToast("Algo salio mal!");
         });
       } else {
         this.presentToast('Internet connection offline');
