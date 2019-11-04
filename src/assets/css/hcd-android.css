@@ -600,11 +600,23 @@ page-menu .drawer-header .avatar {
     height: 100%;
 }
 
+.ordenanza-titulo {
+    display: inline;
+}
+
+.ordenanza-numero {
+    display: inline-block;
+}
+
+.tienefecha {
+    display: inline-block;
+}
+
 /* detalle ordenanza */
 
 .hcd-detalle-ordenanza {
     background: url(../imgs/header-bg.png) no-repeat top center;
-    background-size: contain;
+    background-size: cover;
     background-color: #fff;
 }
 

@@ -34,7 +34,8 @@ export class WpProvider {
   //Obtener ordenanzas  
   getOrdenanzas(id, pageno) {  
     return new Promise((resolve, reject) => {
-      this.http.get('http://digesto.hcdposadas.gob.ar/api/normas?rama='+id+'&page='+pageno)
+      this.http.get('http://digesto.hcdposadas.gob.ar/api/normas?order[numero]=asc&rama='+id+'&page='+pageno)
+      // this.http.get('http://digesto.hcdposadas.gob.ar/api/normas?rama='+id+'&page='+pageno+'?order[numero]=asc')
         .do(this.logResponse)
         .map(this.extractResponse)
         .subscribe(data2 => {

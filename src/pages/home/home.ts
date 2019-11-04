@@ -7,6 +7,7 @@ import { Slides } from 'ionic-angular';
 import { OneSignal } from '@ionic-native/onesignal';
 import { App } from '../../app/app.global';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
+import { InAppBrowserOptions } from '@ionic-native/in-app-browser';
 
 declare var moment: any;
 
@@ -29,6 +30,24 @@ export class HomePage {
   loading: Loading;
   networkStatus: any;
 
+  options : InAppBrowserOptions = {
+    location : 'yes',//Or 'no' 
+    hidden : 'no', //Or  'yes'
+    clearcache : 'yes',
+    clearsessioncache : 'yes',
+    zoom : 'yes',//Android only ,shows browser zoom controls 
+    hardwareback : 'yes',
+    mediaPlaybackRequiresUserAction : 'no',
+    shouldPauseOnSuspend : 'no', //Android only 
+    closebuttoncaption : 'Close', //iOS only
+    disallowoverscroll : 'no', //iOS only 
+    toolbar : 'yes', //iOS only 
+    enableViewportScale : 'no', //iOS only 
+    allowInlineMediaPlayback : 'no',//iOS only 
+    presentationstyle : 'pagesheet',//iOS only 
+    fullscreen : 'yes',//Windows only    
+};
+
   constructor(public navCtrl: NavController, 
               public wp: WpProvider,
               private toastCtrl: ToastController,
@@ -39,10 +58,9 @@ export class HomePage {
               private platform: Platform,
               private youtube: YoutubeVideoPlayer  ) { 
   
-  this.initNotifications(); {
-    console.log();  
-  }   
-          
+            this.initNotifications(); {
+              console.log();  
+            }             
   
   }
 

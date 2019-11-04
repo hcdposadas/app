@@ -25,7 +25,9 @@
           <span class="hcdicon-digesto"></span>
         </ion-thumbnail>
         <h2 class="ordenanza-titulo" text-wrap>{{item.rama?.titulo}} {{item.rama?.numeroRomano}}</h2>
-        <h2 class="ordenanza-titulo" text-wrap>{{item?.numero}} - (N° Anterior: {{item.numeroAnterior}}/{{getDate(item.fechaSancion)}})</h2>
+        <h2 class="ordenanza-numero" text-wrap>- {{item?.numero}} - (N° Anterior: {{item.numeroAnterior}} /</h2>
+        <div class="tienefecha" *ngIf="item.fechaSancion==null; else templateName">-)</div>      
+        <ng-template class="tienefecha" #templateName>{{getDate(item.fechaSancion)}})</ng-template>
         <p class="ordenanza-subtitulo" text-wrap>{{item.temaGeneral}}</p>
       </ion-item> 
     </ion-list>
